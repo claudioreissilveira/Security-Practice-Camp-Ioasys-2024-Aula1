@@ -1,0 +1,21 @@
+Falha numero 1 - Endpoint de login (vulnerável a SQL Injection)
+
+O metodo anterior estava diretamente inserindo na consulta SQL sem qualquer validação adequada. 
+Isso permite que injete código SQL malicioso na tentativa de login e comprometa a segurança do sistema, 
+para isso utilizamos o algoritmo hash para proteger as senhas armazenadas.
+
+Falha numero 2 - Endpoint de listagem de usuários (expondo dados sensíveis)
+
+O metodo anterior estava expondo de maneira direta a senha, isso permite que qualquer pessoa que acesse esse endpoint tenha acessos aos dados em texto simples.
+
+Falha numero 3 - Endpoint de detalhe do usuário logado (expondo senha)
+
+O metodo anterior exibia a senha do usuário através da resposta quando o endpoint /profile é acessado com um nome de usuário específico. 
+Pode ser perigoso, já que expõe informações confidenciais a qualquer um que acesse o endpoint. 
+Sendo assim a exclusao do campo de senha, garante que a senha do usuário não seja incluída na resposta.
+
+Falha numero 4 - models>User.js
+
+O metodo anterior armazenava a senha dos usuarios em texto simples, 
+isso e um pratica insegura porque expoe os dados dos usuarios a qualquer um que acesso o BD. 
+A boa pratica se utiliza o hash e salt para aumentar a seguranca da contra ataques maliciosos.
